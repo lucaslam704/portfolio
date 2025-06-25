@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Lam - Software Developer</title>
+    <title>Lucas Lam</title>
     <style>
         * {
             margin: 0;
@@ -12,267 +12,487 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #000;
+            color: #333;
             background: #fff;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
         }
 
-        .container {
-            max-width: 1000px;
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        header {
-            text-align: center;
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
             color: #000;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-placeholder {
+            width: 300px;
+            height: 300px;
+            background: #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+            border: 4px solid #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .contact-info {
-            font-size: 1.1em;
-            color: #000;
-            margin-top: 15px;
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
         }
 
         .contact-info span {
-            margin: 0 10px;
+            color: #666;
+            font-size: 0.95rem;
         }
 
         .section {
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 25px;
-            margin-bottom: 25px;
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        h2 {
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
             color: #000;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #000;
-            padding-bottom: 10px;
+            margin-bottom: 3rem;
+            text-align: center;
         }
 
-        .summary-text {
-            font-size: 1.1em;
+        .about-content {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            color: #555;
             line-height: 1.8;
-            color: #000;
-            background: #f9f9f9;
-            padding: 20px;
-            border: 1px solid #ddd;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .skill-category {
-            background: #f9f9f9;
-            padding: 20px;
-            border: 1px solid #ddd;
+        .skill-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e5e5;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .skill-category h3 {
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
             color: #000;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
         }
 
-        .skill-category ul {
+        .skill-list {
             list-style: none;
         }
 
-        .skill-category li {
-            padding: 5px 0;
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: #666;
             position: relative;
-            padding-left: 20px;
-            color: #000;
+            padding-left: 1.5rem;
         }
 
-        .skill-category li:before {
-            content: "•";
-            color: #000;
+        .skill-list li:before {
+            content: "→";
             position: absolute;
             left: 0;
+            color: #000;
+            font-weight: 600;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .project-card {
-            background: #f9f9f9;
-            padding: 25px;
-            border: 1px solid #ddd;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e5e5;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
         .project-card h3 {
+            font-size: 1.4rem;
             color: #000;
-            margin-bottom: 15px;
-            font-size: 1.3em;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .project-card p {
-            color: #000;
-            line-height: 1.6;
+            color: #666;
+            line-height: 1.7;
         }
 
-        .education {
+        .project-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f0f0f0;
+            z-index: 0;
+        }
+
+        .education-section {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
             text-align: center;
-            background: #f9f9f9;
-            color: #000;
-            padding: 30px;
-            border: 1px solid #ddd;
         }
 
-        .education h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #000;
+        .education-content {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .education p {
-            font-size: 1.1em;
+        .education-content h3 {
+            font-size: 1.5rem;
             color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-content .school {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-content .year {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-contact span {
+            color: #ccc;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .nav-links {
+                display: none;
             }
 
-            h1 {
-                font-size: 2em;
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
             }
 
             .contact-info {
-                font-size: 1em;
-            }
-
-            .contact-info span {
-                display: block;
-                margin: 5px 0;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
             .section {
-                padding: 20px;
+                padding: 4rem 1rem;
             }
 
-            h2 {
-                font-size: 1.5em;
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .profile-placeholder {
+                width: 250px;
+                height: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Lucas Lam</h1>
-            <p style="font-size: 1.3em; color: #000; margin: 10px 0;">Software Developer</p>
-            <div class="contact-info">
-                <span>Calgary, AB</span>
-                <span>403-667-5214</span>
-                <span>lucaslam704@gmail.com</span>
-            </div>
-        </header>
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">Lucas Lam</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <section class="section">
-            <h2>About Me</h2>
-            <div class="summary-text">
-                I began my tech journey at 13 by operating a game server, which continued until I was 16. During that time, I gained hands-on experience with C++ code, 3D modeling programs, VPS management, MySQL databases, and website hosting. Throughout junior school, I would sketch my ideas on paper and then transform them into innovative features for my game server, developing both my technical skills and creative problem-solving abilities.
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Software Developer</h1>
+                <div class="subtitle">Turning Ideas Into Code</div>
+                <div class="description">
+                    I'm a passionate developer who started my journey at 13 by running game servers, 
+                    and I've been building innovative solutions ever since. Currently studying at SAIT 
+                    and creating meaningful digital experiences.
+                </div>
+                <div class="contact-info">
+                    <span>📍 Calgary, AB</span>
+                    <span>📞 403-667-5214</span>
+                    <span>✉️ lucaslam704@gmail.com</span>
+                </div>
             </div>
-        </section>
+            <div class="hero-image">
+                <div class="profile-placeholder">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section class="section">
-            <h2>Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>HTML & CSS</li>
-                        <li>C++</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Frameworks & Tools</h3>
-                    <ul>
-                        <li>React JS</li>
-                        <li>Oracle Database</li>
-                        <li>MySQL</li>
-                        <li>Figma</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Core Strengths</h3>
-                    <ul>
-                        <li>Problem-solving</li>
-                        <li>Team collaboration</li>
-                        <li>Client communication</li>
-                        <li>Innovation & creativity</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+    <section id="about" class="section">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            I began my tech journey at 13 by operating a game server, which continued until I was 16. 
+            During that time, I gained hands-on experience with C++ code, 3D modeling programs, VPS management, 
+            MySQL databases, and website hosting. Throughout junior school, I would sketch my ideas on paper 
+            and then transform them into innovative features for my game server, developing both my technical 
+            skills and creative problem-solving abilities.
+        </div>
+    </section>
 
-        <section class="section">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Library Management System</h3>
-                    <p>A comprehensive Python application enabling readers to search, borrow, and return books, while providing librarians with tools to add, remove, and manage book catalogs. Data is efficiently stored in CSV format.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Student GPA Manager</h3>
-                    <p>Python-based application for managing student records with full CRUD operations (List, Add, Edit, Delete, Find) and GPA calculation features. Utilizes text file storage for data persistence.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Car Rental System</h3>
-                    <p>Interactive Python application allowing users to select vehicles and additional features for rental periods, with dynamic pricing calculation based on rental duration and selected options.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Stock Value Calculator</h3>
-                    <p>Financial analysis tool that calculates stock transactions from shares bought and sold, includes commission calculations for stockbrokers, and determines profit/loss outcomes for users.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Eco Advisor Program</h3>
-                    <p>Web-based data management platform designed to streamline energy efficiency reporting for Eco Advisors, integrating with Hot2000 (H2K) software for enhanced workflow automation.</p>
-                </div>
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Programming Languages</h3>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>HTML & CSS</li>
+                    <li>C++</li>
+                </ul>
             </div>
-        </section>
+            <div class="skill-card">
+                <h3>Frameworks & Tools</h3>
+                <ul class="skill-list">
+                    <li>React JS</li>
+                    <li>Oracle Database</li>
+                    <li>MySQL</li>
+                    <li>Figma</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Core Strengths</h3>
+                <ul class="skill-list">
+                    <li>Problem-solving</li>
+                    <li>Team collaboration</li>
+                    <li>Client communication</li>
+                    <li>Innovation & creativity</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-        <section class="section">
-            <h2>Education</h2>
-            <div class="education">
-                <h3>Software Development Program</h3>
-                <p>Southern Alberta Institute of Technology (SAIT)</p>
-                <p>2023 - 2025</p>
+    <section id="projects" class="section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-number">01</div>
+                <h3>Library Management System</h3>
+                <p>A comprehensive Python application enabling readers to search, borrow, and return books, while providing librarians with tools to add, remove, and manage book catalogs. Data is efficiently stored in CSV format.</p>
             </div>
-        </section>
-    </div>
+            <div class="project-card">
+                <div class="project-number">02</div>
+                <h3>Student GPA Manager</h3>
+                <p>Python-based application for managing student records with full CRUD operations (List, Add, Edit, Delete, Find) and GPA calculation features. Utilizes text file storage for data persistence.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">03</div>
+                <h3>Car Rental System</h3>
+                <p>Interactive Python application allowing users to select vehicles and additional features for rental periods, with dynamic pricing calculation based on rental duration and selected options.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">04</div>
+                <h3>Stock Value Calculator</h3>
+                <p>Financial analysis tool that calculates stock transactions from shares bought and sold, includes commission calculations for stockbrokers, and determines profit/loss outcomes for users.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">05</div>
+                <h3>Eco Advisor Program</h3>
+                <p>Web-based data management platform designed to streamline energy efficiency reporting for Eco Advisors, integrating with Hot2000 (H2K) software for enhanced workflow automation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="education-section">
+        <h2 class="section-title">Education</h2>
+        <div class="education-content">
+            <h3>Software Development Program</h3>
+            <div class="school">Southern Alberta Institute of Technology (SAIT)</div>
+            <div class="year">2023 - 2025</div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <h3>Let's Work Together</h3>
+        <p>Ready to bring your next project to life?</p>
+        <div class="footer-contact">
+            <span>Calgary, AB</span>
+            <span>403-667-5214</span>
+            <span>lucaslam704@gmail.com</span>
+        </div>
+    </footer>
 
     <script>
-        // Simple scroll behavior
-        document.documentElement.style.scrollBehavior = 'smooth';
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
     </script>
 </body>
 </html>
